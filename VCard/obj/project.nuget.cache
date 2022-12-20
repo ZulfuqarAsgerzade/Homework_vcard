@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "pv4te3P5sGOVYh/QHEEQoJji59vJsoVxdo72mnjHaZbgAl3NBofufpvm+osm4OzgTWZLFZ1/WOKuBJtIrXfPUA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\asger\\source\\repos\\Homework_VCard\\VCard\\VCard.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\asger\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
