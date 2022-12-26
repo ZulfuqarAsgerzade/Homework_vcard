@@ -9,19 +9,18 @@ namespace VCard.Models
 {
     public class User
     {
-        [JsonProperty("first")]
+        private static int _ID = 1;
+        public int ID { get; }
         public string FirstName { get; set; }
-
-        [JsonProperty("last")]
         public string LastName { get; set; }
-
-        [JsonProperty("email")]
         public string Email { get; set; }
-
-        [JsonProperty("phone")]
         public string PhoneNumber { get; set; }
+        public string Country { get; set; }
 
-        [JsonProperty("city")]
-        public string City { get; set; }
+        public User()
+        {
+            this.ID = _ID;
+            _ID++;
+        }
     }
 }

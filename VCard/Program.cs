@@ -1,21 +1,15 @@
-﻿using VCard.Controllers;
+﻿using System.Security.Cryptography.X509Certificates;
+using VCard.Controllers;
 using VCard.Models;
 
 public class Program
 {
-    public static async Task Main()
+    public static void Main()
     {
-        WorkApi.GetData();
+        List<User> users = WorkApi.GetData();
 
-        /*    var url = "https://randomuser.me/api/?results=1";
+        VCardCreator vCardCreator = new VCardCreator();
+        vCardCreator.createVCardAsync(users);
 
-            using (var httpClient = new HttpClient())
-            {
-                var responce = await httpClient.GetAsync(url);
-
-                var responceString = await responce.Content.ReadAsStringAsync();
-
-                var users = System.Text.Json.JsonSerializer.Deserialize<List<User>>(responceString);
-             }*/
     }
 }

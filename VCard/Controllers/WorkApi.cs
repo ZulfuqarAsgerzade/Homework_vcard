@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,36 +14,33 @@ namespace VCard.Controllers
 {
     public class WorkApi
     {
-        User user;
-
-        public static async Task GetData()
+        public static List<User> GetData()
         {
+            List<User> users = new List<User>();
+
+
             HttpClient client = new HttpClient();
 
-            var responseMessage = client.GetAsync("https://randomuser.me/api/?results=1").Result;
+            string json = client.GetStringAsync("https://randomuser.me/api/?results=10").Result;
 
+            var jsonObject = JObject.Parse(json);
 
-            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            dynamic dynamicData = JsonConvert.DeserializeObject<dynamic>(json);
+
+            foreach (var data in dynamicData.results)
             {
+                User user = new User();
 
-                string json = responseMessage.Content.ReadAsStringAsync().Result;
+                user.FirstName= data.name.first;
+                user.LastName = data.name.last;
+                user.Email = data.email;
+                user.PhoneNumber = data.phone;
+                user.Country = data.location.country;
 
-                var data = JsonConvert.DeserializeObject<User>(json);
-
-                Console.WriteLine(new String('-', 50));
-
-                Console.WriteLine(data);
-
-                Console.WriteLine(new String('-', 50));
-
-                Console.WriteLine(data.FirstName + " " + data.LastName + " " + data.City);
-
-            }
-            else
-            {
-                Console.WriteLine("Error!");
+                users.Add(user);
             }
 
+            return users;
         }
          
          
